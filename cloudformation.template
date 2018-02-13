@@ -1,0 +1,87 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "VpcId": {
+      "Type": "AWS::EC2::VPC::Id",
+      "Default": "###REDACTED###"
+    },
+    "CacheNodeType": {
+      "Type": "String",
+      "Default": "cache.m1.small"
+    },
+    "ClusterName": {
+      "Type": "String",
+      "Default": "sentry-redis"
+    },
+    "NumCacheNodes": {
+      "Type": "String",
+      "Default": "1"
+    }
+  },
+  "Resources": {
+    "ElasticacheComponentSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "GroupDescription": "A component security group allowing access only to redis"
+      }
+    },
+    "RedisSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Elasticache security group",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "6379",
+            "ToPort": "6379",
+            "SourceSecurityGroupId": {
+              "Ref": "ElasticacheComponentSecurityGroup"
+            }
+          }
+        ],
+        "VpcId": {
+          "Ref": "VpcId"
+        }
+      }
+    },
+    "ServiceComponentElasticache": {
+      "Type": "AWS::ElastiCache::CacheCluster",
+      "Properties": {
+        "CacheNodeType": {
+          "Ref": "CacheNodeType"
+        },
+        "ClusterName": {
+          "Ref": "ClusterName"
+        },
+        "Engine": "redis",
+        "EngineVersion": "2.8.24",
+        "NumCacheNodes": {
+          "Ref": "NumCacheNodes"
+        },
+        "SnapshotRetentionLimit": 1,
+        "VpcSecurityGroupIds": [
+          {
+            "Ref": "RedisSecurityGroup"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "ElasticacheSecurityGroup": {
+      "Value": {
+        "Ref": "ElasticacheComponentSecurityGroup"
+      },
+      "Description": "Security Group for allowing access to Redis"
+    },
+    "RedisSecurityGroup": {
+      "Value": {
+        "Ref": "RedisSecurityGroup"
+      },
+      "Description": "Security Group for allowing access to Redis"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "master": {
+        "project_name": "sentry",
+        "app_function": "sentry.wsgi.application",
+        "keep_warm": false,
+        "cors": true,
+        "manage_roles": false,
+        "role_name": "ZappaLambdaExecution",
+        "aws_region": "eu-west-1",
+        "remote_env": "s3://###REDACTED###/###REDACTED###/dev/sentry_remote_env.json",
+        "domain": "sentry.###REDACTED###",
+        "certificate_arn": "arn:aws:acm:us-east-1:###REDACTED###:certificate/###REDACTED###",
+        "timeout_seconds": 120,
+        "method_header_types": [
+            "Content-Type",
+            "Location",
+            "Status",
+            "X-Frame-Options",
+            "Set-Cookie",
+            "Access-Control-Allow-Origin",
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Methods"
+        ],
+        "exclude": [
+            ".gitignore",
+            "cloudformation.template",
+            "Makefile",
+            "Makefile.debian",
+            "env",
+            "requirements.txt",
+            "README.md"
+        ],
+        "s3_bucket": "###REDACTED###-sentry"
+    }
+}

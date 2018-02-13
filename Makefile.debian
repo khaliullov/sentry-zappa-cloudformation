@@ -1,0 +1,12 @@
+deps:
+	apt-get install -y \
+	    python-setuptools \
+	    python-dev \
+	    libxslt1-dev \
+	    gcc \
+	    libffi-dev \
+	    libjpeg-dev \
+	    libxml2-dev \
+	    libxslt-dev \
+	    libyaml-dev \
+	    libpq-dev

@@ -1,0 +1,11 @@
+zappa==0.39.1
+sentry==8.14.1
+psycopg2==2.6.2
+pyasn1
+pyOpenSSL>=0.14
+requests==2.12.4
+requests[security]
+PyYAML==3.11
+sentry-plugins==8.14.1
+redis==2.10.5
+https://github.com/getsentry/sentry-auth-google/archive/master.zip

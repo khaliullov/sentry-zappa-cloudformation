@@ -1,0 +1,17 @@
+{
+    "SECRET_KEY": "###REDACTED###",
+    "SENTRY_CONF": "sentry.conf.py",
+    "AWS_S3_FILE_BUCKET": "###REDACTED###-sentry-filestore",
+    "GOOGLE_CLIENT_ID": "###REDACTED###.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET": "###REDACTED###",
+    "EMAIL_HOST_USER": "###REDACTED###",
+    "EMAIL_HOST_PASSWORD": "###REDACTED###",
+    "REDIS_HOST": "###REDACTED###",
+    "REDIS_PORT": "6379",
+    "DB_ENGINE": "django.db.backends.postgresql_psycopg2",
+    "DB_NAME": "sentry",
+    "DB_USER": "###REDACTED###",
+    "DB_PASSWORD": "###REDACTED###",
+    "DB_HOST": "###REDACTED###.eu-west-1.rds.amazonaws.com",
+    "DB_PORT": ""
+}
